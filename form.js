@@ -8,4 +8,6 @@ submit.onclick = function()  {
         if(option[i].checked)
         console.log(option[i].value);
     }
+    window.location.href = "index.html";
+    console.log("pressed")
 };
