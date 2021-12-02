@@ -294,3 +294,18 @@ span.psw {
 }
 /* </style> */
 /* <-- Login Style End Here --> */
+
+/* <Results page Style>*/
+.results p {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #b1c4b1;
+  cursor:pointer;
+}
+
+.results img {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #b1c4b1;
+  cursor:pointer;
+}

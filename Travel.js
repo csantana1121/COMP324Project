@@ -1,4 +1,5 @@
 var startButton = document.getElementById('travel');
+var dict = {};
 startButton.onclick = function()  {   
   const data = null;
 
