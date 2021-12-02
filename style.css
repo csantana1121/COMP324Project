@@ -43,14 +43,16 @@ body {
   
 }
 
-.footer {
-   position: fixed;
+footer {
+   position:fixed;
    left: 0;
    bottom: 0;
    width: 100%;
    background-color: #333;
    color: white;
    text-align: center;
+   margin-top:auto;
+   max-height: 100px;
 }
 
 @media screen and (max-width: 600px) {
@@ -300,7 +302,9 @@ span.psw {
   margin: 10px;
   padding: 10px;
   border: 1px solid #b1c4b1;
+  text-align: center;
   cursor:pointer;
+  
 }
 
 .results img {
@@ -308,4 +312,11 @@ span.psw {
   padding: 10px;
   border: 1px solid #b1c4b1;
   cursor:pointer;
+}
+.results div{
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #b1c4b1;
+  cursor:pointer;
+  padding-bottom: 100px;
 }

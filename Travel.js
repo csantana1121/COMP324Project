@@ -10,7 +10,7 @@ startButton.onclick = function()  {
     if (this.readyState === this.DONE) {
       console.log(this.responseText);
       var json = JSON.parse(this.response)
-      console.log(json['data'][0]['result_object']['photo']['images']['original']['url']);
+      console.log(json['data']['lodging']['result_object']['photo']['images']['original']['url']);
     }
   });
 
