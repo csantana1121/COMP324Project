@@ -5,6 +5,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+  color: rgba(0, 0, 0, 0.842);
+}
+
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -37,6 +41,7 @@ body {
 .about-section {
   text-align: center;
   color: white;
+  bottom: 10%;
     
    /*<!--padding: 50px; -->
   <!--background-color: #474e5d; --> */
@@ -103,7 +108,7 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 25%;
   margin-bottom: 16px;
   padding: 0 8px;
 }
@@ -155,7 +160,8 @@ html {
 .footer {
    position: fixed;
    left: 0;
-   bottom: 0;
+   margin-top: 25%;
+   bottom: 10%;
    width: 100%;
    background-color: #333;
    color: white;
