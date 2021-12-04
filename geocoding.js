@@ -1,34 +1,44 @@
 function Append(){
     const data = null;
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
+    const db = firebase.database();
+    // const xhr = new XMLHttpRequest();
+    // xhr.withCredentials = false;
 
-    xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-      var json = JSON.parse(this.response)
-      console.log(json['data'][1]['result_object']['photo']['images']['large']['url']);
-      var output = document.getElementById("output");
-    //   var $note ="<img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'><img>";
-      var query = "<div><img src='";
-      query += json['data'][0]['result_object']['photo']['images']['large']['url'];
-      query += "'></div>"
-      const parser = new DOMParser();
-    //   console.log(parser.parseFromString($note, 'text/html').firstChild);
-    //   output.append(parser.parseFromString($note, 'text/html').firstChild);
-      output.append(parser.parseFromString(query, 'text/html').firstChild);
+    // xhr.addEventListener("readystatechange", function () {
+    // if (this.readyState === this.DONE) {
+    //   console.log(this.responseText);
+    //   var json = JSON.parse(this.response)
+    //   console.log(json['data'][1]['result_object']['photo']['images']['large']['url']);
+    //   var output = document.getElementById("output");
+    // //   var $note ="<img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'><img>";
+    //   var query = "<div><img src='";
+    //   query += json['data'][0]['result_object']['photo']['images']['large']['url'];
+    //   query += "'></div>"
+    //   const parser = new DOMParser();
+    // //   console.log(parser.parseFromString($note, 'text/html').firstChild);
+    // //   output.append(parser.parseFromString($note, 'text/html').firstChild);
+    //   output.append(parser.parseFromString(query, 'text/html').firstChild);
+      db.ref('results/q3').once('value')
+        .then((snapshot) => {
+        // snapshot of the data - request the return value for the data at the time of query...
+        const data = snapshot.val();
+        console.log('single data = ', data);
+        GeoCode(data,store);
+        })
+        .catch((e) => {
+        console.log('error returned - ', e);
+        });
     //   output.append(parser.parseFromString(json['data'][0]['result_object']['photo']['images']['original']['url']))
     //   output.append("<img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'>");
     }
-  });
+//   });
 
-  xhr.open("GET", "https://travel-advisor.p.rapidapi.com/locations/search?query=Chicago&lang=en_US&units=km");
-  xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+//   xhr.open("GET", "https://travel-advisor.p.rapidapi.com/locations/search?query=Chicago&lang=en_US&units=km");
+//   xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+//   xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
 
-  xhr.send(data);
-}
-
+//   xhr.send(data);
+// }
 function GeoCode(location,store)  {   
     const data = null;
     const key = "AIzaSyBn3PMPpjblLpWGNw4GCq-cZoqb2SeYWc8";
@@ -54,6 +64,7 @@ function store(list){
     var y = list["lng"]
     console.log(x + " " + y);
     restaurants(x,y);
+    attractions(x,y);
 }
 function restaurants(lat , lng){
     const data = null;
@@ -66,9 +77,6 @@ function restaurants(lat , lng){
       var json = JSON.parse(this.response)
       console.log(json['data'][0]['name']);
       var output = document.getElementById("output");
-    //   var query = "<img src='";
-    //   query += json['data'][0]['photo']['images']['large']['url'];
-    //   query += "'>"
       var rest = "<div><p>" + json['data'][0]['name'] + "</p>"
       rest += "<p>" +json['data'][0]['rating'] +"</p>"
       rest += "<p>" + json['data'][0]['ranking'] + "</p></div>"
@@ -84,4 +92,33 @@ function restaurants(lat , lng){
 
   xhr.send(data);
 }
-GeoCode("Chicago",store);
+function attractions(lat , lng){
+    const data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+
+    xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      console.log(this.responseText);
+      var json = JSON.parse(this.response)
+      console.log(json['data'][0]['name']);
+      var output = document.getElementById("output");
+    //   var query = "<img src='";
+    //   query += json['data'][0]['photo']['images']['large']['url'];
+    //   query += "'>"
+      var rest = "<div><p>" + json['data'][0]['name'] + "</p>"
+      rest += "<img src='";
+        rest += json['data'][0]['photo']['images']['large']['url'];
+        rest += "'></div>"
+      const parser = new DOMParser();
+    //   output.append(parser.parseFromString(query, 'text/html').firstChild);
+      output.append(parser.parseFromString(rest, 'text/html').firstChild)
+    }
+  });
+
+  xhr.open("GET", "https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng?longitude=" + lng + "&latitude=" + lat +"&lunit=km&currency=USD&lang=en_US");
+  xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+  xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+
+  xhr.send(data);
+}
