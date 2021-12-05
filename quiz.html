@@ -1,333 +1,199 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="form.css">
-    <!-- JS - Firebase app -->
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyBpUOFTERihNsinCb56sfLpS6vj9rtVnHw",
-            authDomain: "quiz-ago.firebaseapp.com",
-            databaseURL: "https://quiz-ago-default-rtdb.firebaseio.com",
-            projectId: "quiz-ago",
-            storageBucket: "quiz-ago.appspot.com",
-            messagingSenderId: "484267168916"
-        };
-        firebase.initializeApp(config);
-    </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+<!-- JS - Firebase app -->
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyBpUOFTERihNsinCb56sfLpS6vj9rtVnHw",
+  authDomain: "quiz-ago.firebaseapp.com",
+  databaseURL: "https://quiz-ago-default-rtdb.firebaseio.com",
+  projectId: "quiz-ago",
+  storageBucket: "quiz-ago.appspot.com",
+  messagingSenderId: "484267168916"
+};
+firebase.initializeApp(config);
+</script>
 </head>
-<body style="background-color:teal;">
+<body>
 <div class="topnav" id="myTopnav">
-    <a href="index.html" class="active">Home</a>
-    <a href="quiz.html">Quiz</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-    </a>
+  <a href="index.html" class="active">Home</a>
+  <a href="quiz.html">Quiz</a>    
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
 
 <div style="padding-left:16px">
-    <h2>Take Your Adventure Quiz!</h2>
-    <p>Resize the browser window to see how it works.</p>
+  <h2>Responsive Topnav Example</h2>
+  <p>Resize the browser window to see how it works.</p>
 </div>
 <input type="button" id="travel" value="Query API" />
 <script type="module" src ="Travel.js" defer></script>
 <form id="form"target="_blank">
+ 
+  <!-- Details -->
+  <div class="form-control">
+      <label for="name" id="label-name">
+          Name
+      </label>
 
-    <!-- Details -->
+      <!-- Input Type Text -->
+      <input type="text"
+             id="name"
+             placeholder="Enter your name" />
+  </div>
 
-    <!-- Input your Name -->
-    <div class="form-control">
-        <label for="name" id="label-name">
-            Name
-        </label>
+  <div class="form-control">
+      <label for="location" id="label-location">
+          Location
+      </label>
 
-        <!-- Input Type Text -->
-        <input type="text"
-               id="name"
-               placeholder="Enter your name" />
-    </div>
+      <!-- Input Type Email-->
+      <input type="location"
+             id="location"
+             placeholder="Enter your location" />
+  </div>
 
+  <div class="form-control">
+      <label for="age" id="label-age">
+          Age
+      </label>
 
+      <!-- Input Type Text -->
+      <input type="text"
+             id="age"
+             placeholder="Enter your age" />
+  </div>
 
-    <!-- Input Type Email-->
-    <div class="form-control">
-        <label for="Email" id="label-email">
-            Name
-        </label>
+  <div class="form-control">
+      <label for="role" id="label-role">
+          Which option best describes you?
+      </label>
+       
+      <!-- Dropdown options -->
+      <select name="role" id="role">
+          <option value="student">Student</option>
+          <option value="intern">Intern</option>
+          <option value="professional">
+              Professional
+          </option>
+          <option value="other">Other</option>
+      </select>
+  </div>
 
-        <!-- Input Type Text -->
-        <input type="text"
-               id="email"
-               placeholder="Enter your email address" />
-    </div>
+  <div class="form-control" id  ="choice-1">
+      <label>
+          Some random question
+      </label>
 
+      <!-- Input Type Radio Button -->
+      <label for="recommed-1">
+          <input type="radio"
+                 id="recommed-1"
+                 name="recommed"
+                 value="Yes">Yes</input>
+      </label>
+      <label for="recommed-2">
+          <input type="radio"
+                 id="recommed-2"
+                 name="recommed"
+                 value="No">No</input>
+      </label>
+      <label for="recommed-3">
+          <input type="radio"
+                 id="recommed-3"
+                 name="recommed"
+                 value="Maybe">Maybe</input>
+      </label>
+  </div>
 
-    <div class="form-control">
-        <label for="age" id="label-age">
-            Age
-        </label>
+  <div class="form-control">
+      <label>Languages and Frameworks known
+          <small>(Check all that apply)</small>
+      </label>
+      <!-- Input Type Checkbox -->
+      <label for="inp-1">
+          <input type="checkbox"
+                 name="inp">C</input></label>
+      <label for="inp-2">
+          <input type="checkbox"
+                 name="inp">C++</input></label>
+      <label for="inp-3">
+          <input type="checkbox"
+                 name="inp">C#</input></label>
+      <label for="inp-4">
+          <input type="checkbox"
+                 name="inp">Java</input></label>
+      <label for="inp-5">
+          <input type="checkbox"
+                 name="inp">Python</input></label>
+      <label for="inp-6">
+          <input type="checkbox"
+                 name="inp">JavaScript</input></label>
+      <label for="inp-7">
+          <input type="checkbox"
+                 name="inp">React</input></label>
+      <label for="inp-7">
+          <input type="checkbox"
+                 name="inp">Angular</input></label>
+      <label for="inp-7">
+          <input type="checkbox"
+                 name="inp">Django</input></label>
+      <label for="inp-7">
+          <input type="checkbox"
+                 name="inp">Spring</input></label>
+  </div>
 
-        <!-- Input Type Text -->
-        <input type="text"
-               id="age"
-               placeholder="Enter your age" />
-    </div>
+  <div class="form-control">
+      <label for="comment">
+          Any comments or suggestions
+      </label>
 
-    <div class="form-control">
-        <label for="role" id="label-location">
-            Where are you looking to explore?
-        </label>
-
-        <!-- Dropdown options -->
-        <select name="role" id="location">
-            <option value="NYC">New York City</option>
-            <option value="chicago">Chicago</option>
-            <option value="philadelphia">Philadelphia</option>
-            <option value="los-angeles">Los Angeles</option>
-            <option value="dallas">Dallas</option>
-
-        </select>
-    </div>
-
-    <div class="form-control">
-        <label for="role" id="label-role">
-            Which option best describes you?
-        </label>
-
-        <!-- Dropdown options -->
-        <select name="role" id="role">
-            <option value="student">Student</option>
-            <option value="tourist">Tourist</option>
-            <option value="local-resident">Local Resident</option>
-            <option value="senior">Senior Citizen</option>
-        </select>
-    </div>
-
-    <div class="form-control">
-        <label> Whats the most important quality to have in your food
-            <small>(Check all that apply)</small>
-        </label>
-        <!-- Input Type Checkbox -->
-        <label for="inp-1">
-            <input type="checkbox"
-                   name="inp">Spicy</input></label>
-        <label for="inp-2">
-            <input type="checkbox"
-                   name="inp">Meat</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Vegetable</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Sweet</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Out of this world</input></label>
-    </div>
-
-    <div class="form-control" id  ="choice-1">
-        <label>
-            Whats your trip budget?
-        </label>
-
-        <!-- Input Type Radio Button -->
-        <label for="recommed-1">
-            <input type="radio"
-                   id="recommed-1"
-                   name="recommed"
-                   value="$$$$">$$$$</input>
-        </label>
-        <label for="recommed-2">
-            <input type="radio"
-                   id="recommed-2"
-                   name="recommed"
-                   value="$$$">$$$$</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="$$">$$</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="$">$</input>
-        </label>
-    </div>
-
-
-    <div class="form-control">
-        <label> What does adventure look like too you?
-            <small>(Check all that apply)</small>
-        </label>
-        <!-- Input Type Checkbox -->
-        <label for="inp-1">
-            <input type="checkbox"
-                   name="inp">Exploring Nature beauty and dangers</input></label>
-        <label for="inp-2">
-            <input type="checkbox"
-                   name="inp">Wondering the hidden allies of a city</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Pondering the meaning of a meaningless painting at a world renown museum</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Living a night you won't remember the next morning</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp"> Im not cool, give me something basic</input></label>
-    </div>
-
-    <div class="form-control" id  ="choice-1">
-        <label>
-            Are you looking to spend the night?
-        </label>
-
-        <!-- Input Type Radio Button -->
-        <label for="recommed-1">
-            <input type="radio"
-                   id="recommed-1"
-                   name="recommed"
-                   value="Yes">Yes</input>
-        </label>
-        <label for="recommed-2">
-            <input type="radio"
-                   id="recommed-2"
-                   name="recommed"
-                   value="No">No</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="Maybe">Maybe</input>
-        </label>
-    </div>
-
-    <div class="form-control">
-        <label for="age" id="label-NumbOfNights">
-            If so, how many nights</label> <small>(Put 0 for a day trip)</small>
-
-        <!-- Input Type Text -->
-        <input type="text"
-               id="NumOfNights"
-               placeholder="How many night are you going to stay" />
-    </div>
-
-    <div class="form-control">
-        <label>Do you prefer a way to get around town?
-            <small>(some ways might be harder than others, but we will let you know!)</small>
-        </label>
-        <!-- Input Type Checkbox -->
-        <label for="inp-1">
-            <input type="checkbox"
-                   name="inp">Rent a car</input></label>
-        <label for="inp-2">
-            <input type="checkbox"
-                   name="inp">Public Transportation</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Ride Sharing </input></label>
-        <label for="inp-4">
-            <input type="checkbox"
-                   name="inp">Walking</input></label>
-        <label for="inp-5">
-            <input type="checkbox"
-                   name="inp">Biking</input></label>
-
-    </div>
-
-    <div class="form-control">
-        <label for="comment">
-            Anything else you want to let us know?
-        </label>
-
-        <!-- multi-line text input control -->
-        <textarea name="comment" id="comment"
-                  placeholder="Enter your comment here">
+      <!-- multi-line text input control -->
+      <textarea name="comment" id="comment"
+          placeholder="Enter your comment here">
       </textarea>
-    </div>
+  </div>
 
-    <!-- Multi-line Text Input Control -->
-    <!-- <a href="index.html"> -->
-    <button type="submit" value="submit" id = "submit">
-        Submit
-    </button>
-    <!-- <script>
-      var submit = document.getElementById("submit");
-      document.getElementById("submit").onclick = function () {
-          window.location.href = "index.html";
-          console.log("pressed");
-      };
-    </script> -->
+  <!-- Multi-line Text Input Control -->
+  <!-- <a href="index.html"> -->
+  <button type="submit" value="submit" id = "submit">
+      Submit
+  </button>
+  <!-- <script>
+    var submit = document.getElementById("submit");
+    document.getElementById("submit").onclick = function () {
+        window.location.href = "index.html";
+        console.log("pressed");
+    };
+  </script> -->
 </form>
 <script type="module" src ="form.js" ></script>
 <script>
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 </script>
-
-
-<br> <br> <br> 
-
-
-<div class="footer" style="height: 13%;">
-    <footer>
-    <div class="row" style="color: #333;">
-      <div class="column">
-        <div class="container">
-          <a href="#" class="fa fa-facebook"></a>
-          <a href="#" class="fa fa-twitter"></a>
-          <a href="#" class="fa fa-linkedin"></a>
-          <a href="#" class="fa fa-instagram"></a>
-           <a href="#"><p>Some text that describes me.</p></a>
-           <a href="#"><p>Some text that describes me.</p></a>
-      </div>
-      </div>
     
-    <div class="column">
-      <div class="container">
-         <a href="#">
-          <a href="#"><p>Some text that describes me.</p></a>
-           <a href="#"><p>Some text that describes me.</p></a>
-        </a>
-    </div>
-    </div>
-        
-    <div class="column">
-      <div class="container">
-        <a href="#"><p>Some text that describes me.</p></a>
-        <a href="#"><p>Some text that describes me.</p></a>
-        </a>
-    </div>
-    </div>
-    
-    <div class="column">
-      <div class="container">
-          <img src="chicagologo.png" alt="" style="width:50%">
-    </div>
-    </div>
-    
-    </div>   
-    </footer>
-  </div>
-
-    <br> <br> <br>
-    <br> <br> <br>
+<div class="footer">
+<footer>
+  <p>Quizago<br>
+  <a href="quiz.ago@example.com">quiz.ago@example.com</a></p>
+</footer>
+</div>
 
 </body>
 </html>
