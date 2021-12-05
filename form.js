@@ -30,12 +30,16 @@ submit.onclick = function()  {
     db.ref('results/q3').set(loc).then(() => {
         // log data set success to console
         console.log('data set...');
-        window.location.replace("results.html");
+        window.location.href = "results.html";
         })
         .catch((e) => {
         // catcg error from Firebase - error logged to console
         console.log('error returned', e);
         });
+        // window.close();
     // window.location.replace("results.html");    
-
+    // setTimeout(function () {
+    //     console.log("Hi 5 seconds laters");
+    // }, 5000);
+    // window.location.href = "results.html";
 };
