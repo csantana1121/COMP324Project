@@ -110,7 +110,11 @@ function restaurants(lat , lng){
         } else{
             rest += "<p> <br> </p>"
         }
-        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        if(typeof json['data'][i]['address'] != 'undefined'){
+            rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
         rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
@@ -181,7 +185,11 @@ function attractions(lat , lng){
         } else{
             rest += "<p> <br> </p>"
         }
-        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        if(typeof json['data'][i]['address'] != 'undefined'){
+            rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
         rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
@@ -242,8 +250,16 @@ function hotels(lat,lng){
         } else{
             rest += "<p><br></p>"
         }
-        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
-        rest += "<p>Price per night: " + json['data'][i]['price'] + "</p>"
+        if(typeof json['data'][i]['ranking'] != 'undefined'){
+            rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        } else{
+            rest +="<p><br></p>"
+        }
+        if(typeof json['data'][i]['price'] != 'undefined'){
+            rest += "<p>Price per night: " + json['data'][i]['price'] + "</p>"
+        } else{
+            rest +="<p><br></p>"
+        }
         if(typeof json['data'][i]['neighborhood_info'] != 'undefined'){
             rest += "<p>Location: " + json['data'][i]['neighborhood_info'][0]['name'] + "</p>"
         } else{
