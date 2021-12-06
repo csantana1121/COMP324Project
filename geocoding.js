@@ -95,9 +95,21 @@ function restaurants(lat , lng){
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
-        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
-        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
-        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        if(typeof json['data'][i]['rating'] != 'undefined'){
+            rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
+        if(typeof json['data'][i]['ranking'] != 'undefined'){
+            rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
+        if(typeof json['data'][i]['phone'] != 'undefined'){
+            rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
         rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
         rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
@@ -154,9 +166,21 @@ function attractions(lat , lng){
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
-        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
-        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
-        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        if(typeof json['data'][i]['rating'] != 'undefined'){
+            rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
+        if(typeof json['data'][i]['ranking'] != 'undefined'){
+            rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
+        if(typeof json['data'][i]['phone'] != 'undefined'){
+            rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        } else{
+            rest += "<p> <br> </p>"
+        }
         rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
         rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
@@ -206,16 +230,25 @@ function hotels(lat,lng){
       while(count<3){
         var url = json['data'][i]['photo'];
         var web = json['data'][i]['business_listings']['mobile_contacts'][0]
-        if(typeof url != 'undefined' && typeof web != 'undefined'){ 
+        if(typeof url != 'undefined' && typeof web != 'undefined'){
+        // ReverseGeoCode(json['data'][i]['latitude'],json['data'][i]['longitude'])
         var output = document.getElementById("output");
         var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
-        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        if(typeof json['data'][i]['rating'] != 'undefined'){
+            rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        } else{
+            rest += "<p><br></p>"
+        }
         rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
-        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
-        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        rest += "<p>Price per night: " + json['data'][i]['price'] + "</p>"
+        if(typeof json['data'][i]['neighborhood_info'] != 'undefined'){
+            rest += "<p>Location: " + json['data'][i]['neighborhood_info'][0]['name'] + "</p>"
+        } else{
+            rest += "<p><br></p>"
+        }
         rest += "<a href='" + json['data'][i]['business_listings']['mobile_contacts'][0]['value'] + "'><button class='button'>Website</button></a>"
         rest += "<a href='mailto: " + json['data'][i]['email']+ "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
