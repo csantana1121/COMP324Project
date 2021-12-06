@@ -48,22 +48,49 @@ function restaurants(lat , lng){
     if (this.readyState === this.DONE) {
       console.log(this.responseText);
       var json = JSON.parse(this.response)
-      console.log(json['data'][0]['name']);
-      var output = document.getElementById("output");
-      var rest = "<div><p>" + json['data'][0]['name'] + "</p>"
-      rest += "<p>" +json['data'][0]['rating'] +"</p>"
-      rest += "<p>" + json['data'][0]['ranking'] + "</p></div>"
+      var count = 0;
+      var i = 0;
+      var titleoutput = document.getElementById("output");
+      var title = "<h2 style='text-align:center'>Restaurants</h2>";
       const parser = new DOMParser();
+      titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
+      while(count<3){
+        var url = json['data'][i]['photo'];
+        if(typeof url != 'undefined'){ 
+        var output = document.getElementById("output");
+        var rest = "<div> <p>" + json['data'][i]['name'] + "</p>"
+        rest += "<img src='";
+        rest += json['data'][i]['photo']['images']['large']['url'];
+        rest += "'>"
+        rest += "<p>" +json['data'][i]['rating'] +"</p>"
+        rest += "<p>" + json['data'][i]['ranking'] + "</p>"
+        rest += "<p>" + json['data'][i]['phone'] + "</p>"
+        rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
+        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
-      output.append(parser.parseFromString(rest, 'text/html').firstChild)
+        output.append(parser.parseFromString(rest, 'text/html').firstChild)
+        count++;
+        } 
+        i++;
+      }
+      console.log(json['data'][0]['name']);
     }
   });
+  const db = firebase.database();
+      db.ref('results/q1').once('value')
+        .then((snapshot) => {
+        // snapshot of the data - request the return value for the data at the time of query...
+        const data = snapshot.val();
+        console.log('single data = ', data);
+        xhr.open("GET", "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" + lat + "&longitude=" + lng +"&limit=30&currency=USD&prices_restaurants=" + data +"&distance=2&open_now=false&lunit=km&lang=en_US");
+        xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+        xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
 
-  xhr.open("GET", "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" + lat + "&longitude=" + lng +"&limit=30&currency=USD&distance=2&open_now=false&lunit=km&lang=en_US");
-  xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
-
-  xhr.send(data);
+        xhr.send(data);
+        })
+        .catch((e) => {
+        console.log('error returned - ', e);
+        });
 }
 function attractions(lat , lng){
     const data = null;
