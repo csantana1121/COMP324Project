@@ -417,7 +417,10 @@ html {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   margin: 8px;
 }
-
+img {
+  height: 462px;
+  object-fit: cover;
+}
 .about-section {
   text-align: center;
   color: white;

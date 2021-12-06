@@ -17,59 +17,22 @@ var config = {
 firebase.initializeApp(config);
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="style.css">
+<!-- <link rel="stylesheet" href="style.css"> -->
+<link rel="stylesheet" href="about.css">
 </head>
-<!-- <script>
-//     function Append(){
-//     const data = null;
-//     const xhr = new XMLHttpRequest();
-//     xhr.withCredentials = false;
-
-//     xhr.addEventListener("readystatechange", function () {
-//     if (this.readyState === this.DONE) {
-//       console.log(this.responseText);
-//       var json = JSON.parse(this.response)
-//       console.log(json['data'][1]['result_object']['photo']['images']['large']['url']);
-//       var output = document.getElementById("output");
-//     //   var $note ="<img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'><img>";
-//       var query = "<img src='";
-//       query += json['data'][0]['result_object']['photo']['images']['large']['url'];
-//       query += "'>"
-//       const parser = new DOMParser();
-//     //   console.log(parser.parseFromString($note, 'text/html').firstChild);
-//     //   output.append(parser.parseFromString($note, 'text/html').firstChild);
-//       output.append(parser.parseFromString(query, 'text/html').firstChild);
-//     //   output.append(parser.parseFromString(json['data'][0]['result_object']['photo']['images']['original']['url']))
-//     //   output.append("<img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'>");
-//     }
-//   });
-
-//   xhr.open("GET", "https://travel-advisor.p.rapidapi.com/locations/search?query=Chicago&lang=en_US&units=km");
-//   xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-//   xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
-
-//   xhr.send(data);
-// }</script> -->
 <script src = geocoding.js></script>
 <body onload="Append()">
 
 <div class="topnav" id="myTopnav">
   <a href="index.html" class="active">Home</a>
-  <a href="activities.html">Activities</a>
-  <a href="restaurants.html">Restaurants</a>
   <a href="quiz.html">Quiz</a>    
   <a href="about.html">About</a>
   <a href="contact.html">Contact</a>
-  <a href="login.html">Login</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
 
-<div style="padding-left:16px">
-  <h2>Responsive Topnav Example</h2>
-  <p>Resize the browser window to see how it works.</p>
-</div>
 <script>
     function myFunction() {
       var x = document.getElementById("myTopnav");
@@ -79,11 +42,10 @@ firebase.initializeApp(config);
         x.className = "topnav";
       }
     }
-    </script>
-        
-    <section class="results" id= "output">
+    </script>   
+    <div class="about-section" id= "output">
         <!-- <img src='https://media-cdn.tripadvisor.com/media/photo-o/1a/5b/4b/16/caption.jpg'> -->
-    </section>
+    </div>
         
     
     <footer>

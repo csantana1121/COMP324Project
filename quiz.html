@@ -20,7 +20,7 @@ var config = {
 firebase.initializeApp(config);
 </script>
 </head>
-<body>
+<body style="background-color: teal;">
 <div class="topnav" id="myTopnav">
   <a href="index.html" class="active">Home</a>
   <a href="quiz.html">Quiz</a>    
@@ -30,335 +30,186 @@ firebase.initializeApp(config);
     <i class="fa fa-bars"></i>
   </a>
 </div>
-
-<div style="padding-left:16px">
-  <h2>Responsive Topnav Example</h2>
-  <p>Resize the browser window to see how it works.</p>
-</div>
-<input type="button" id="travel" value="Query API" />
-<script type="module" src ="Travel.js" defer></script>
 <form id="form"target="_blank">
  
   <!-- Details -->
-  <div class="form-control">
-      <label for="name" id="label-name">
-          Name
-      </label>
-
-      <!-- Input Type Text -->
-      <input type="text"
-             id="name"
-             placeholder="Enter your name" />
-  </div>
-
-    <!-- Details -->
-
-    <!-- Input your Name -->
-    <div class="form-control">
-        <label for="name" id="label-name">
-            Name
-        </label>
-
-        <!-- Input Type Text -->
-        <input type="text"
-               id="name"
-               placeholder="Enter your name" />
-    </div>
-
-
-
-    <!-- Input Type Email-->
-    <div class="form-control">
-        <label for="Email" id="label-email">
-            Name
-        </label>
-
-        <!-- Input Type Text -->
-        <input type="text"
-               id="email"
-               placeholder="Enter your email address" />
-    </div>
-
-
-    <div class="form-control">
-        <label for="age" id="label-age">
-            Age
-        </label>
-
-        <!-- Input Type Text -->
-        <input type="text"
-               id="age"
-               placeholder="Enter your age" />
-    </div>
-
-    <div class="form-control">
-        <label for="role" id="label-location">
-            Where are you looking to explore?
-        </label>
-
-        <!-- Dropdown options -->
-        <select name="role" id="location">
-            <option value="chicago">Chicago</option>
-            <option value="NYC">New York City</option>
-            <option value="philadelphia">Philadelphia</option>
-            <option value="los-angeles">Los Angeles</option>
-            <option value="London">London</option>
-            <option value="Paris">Paris</option>
-            <option value="Ampsterdam">Ampsterdam</option>
-            <option value="Mumbi">Mumbi</option>
-            <option value="Lagos">Lagos</option>
-            <option value="Moscow">Moscow</option>
-            <option value="Tokyo">Tokyo</option>
-            <option value="Mexico City">Mexico City</option>
-            <option value="Toronto">Toronto</option>
-            <option value="Berlin">Berlin</option>
-            <option value="reycavik">Reycavik</option>
-
-        </select>
-    </div>
-
-    <div class="form-control">
-        <label for="role" id="label-role">
-            Which option best describes you?
-        </label>
-
-        <!-- Dropdown options -->
-        <select name="role" id="role">
-            <option value="student">Student</option>
-            <option value="tourist">Tourist</option>
-            <option value="local-resident">Local Resident</option>
-            <option value="senior">Senior Citizen</option>
-        </select>
-    </div>
-
-    <div class="form-control">
-        <label> Whats the most important food quality?
-            <small>(Check all that apply)</small>
-        </label>
-        <!-- Input Type Checkbox -->
-        <label for="inp-1">
-            <input type="checkbox"
-                   name="inp">Spicy</input></label>
-        <label for="inp-2">
-            <input type="checkbox"
-                   name="inp">The amount of meat in the food</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">I dont know what this question is asking (I'll eat anything)</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">The amount of sugar in the food</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Can put ranch dressing on it</input></label>
-    </div>
-
-    <div class="form-control" id  ="choice-1">
-        <label>
-            Whats your trip budget?
-        </label>
-
-        <!-- Input Type Radio Button -->
-        <label for="recommed-1">
-            <input type="radio"
-                   id="recommed-1"
-                   name="recommed"
-                   value="$$$$">$$$$</input>
-        </label>
-        <label for="recommed-2">
-            <input type="radio"
-                   id="recommed-2"
-                   name="recommed"
-                   value="$$$">$$$</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="$$">$$</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="$">$</input>
-        </label>
-    </div>
-
-    <div class="form-control" id  ="choice-1">
-        <label>
-            How Adventuris are you?
-        </label>
-
-        <!-- Input Type Radio Button -->
-        <label for="recommed-1">
-            <input type="radio"
-                   id="recommed-1"
-                   name="recommed"
-                   value="crazy">Super Adventuris </input>
-        </label>
-        <label for="recommed-2">
-            <input type="radio"
-                   id="recommed-2"
-                   name="recommed"
-                   value="lesscrazy">Adventuris</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="notcrazy">I can go on a hike</input>
-        </label>
-        <label for="recommed-3">
-            <input type="radio"
-                   id="recommed-3"
-                   name="recommed"
-                   value="notfun">I just want to watch a movie</input>
-        </label>
-    </div>
-
-
-    <div class="form-control">
-        <label> What does fun look like too you?
-            <small>(Check all that apply)</small>
-        </label>
-        <!-- Input Type Checkbox -->
-        <label for="inp-1">
-            <input type="checkbox"
-                   name="inp">Exploring Nature </input></label>
-        <label for="inp-2">
-            <input type="checkbox"
-                   name="inp">Wondering the hidden allies of a city</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Pondering the meaning of a meaningless painting</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp">Living a night you won't remember the next morning</input></label>
-        <label for="inp-3">
-            <input type="checkbox"
-                   name="inp"> Box wine and a puzzle with some friends</input></label>
-    </div>
-
-      <!-- Input Type Email-->
-      <input type="location"
-             id="location"
-             placeholder="Enter your location" />
-  </div>
 
   <div class="form-control">
-      <label for="age" id="label-age">
-          Age
-      </label>
+    <label for="role" id="label-location">
+        Where are you looking to explore?
+    </label>
 
-      <!-- Input Type Text -->
-      <input type="text"
-             id="age"
-             placeholder="Enter your age" />
-  </div>
+    <!-- Dropdown options -->
+    <select name="role" id="loc">
+        <option value="New York City">New York City</option>
+        <option value="Chicago">Chicago</option>
+        <option value="Philadelphia">Philadelphia</option>
+        <option value="Los Angeles">Los Angeles</option>
+        <option value="Dallas">Dallas</option>
+        <option value="London">London</option>
+        <option value="Paris">Paris</option>
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Lagos">Lagos</option>
+        <option value="Moscow">Moscow</option>
+        <option value="Tokyo">Tokyo</option>
+        <option value="Mexico City">Mexico City</option>
+        <option value="Toronto">Toronto</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Reykjavik">Reykjavik</option>
 
-  <div class="form-control">
-      <label for="role" id="label-role">
-          Which option best describes you?
-      </label>
-       
-      <!-- Dropdown options -->
-      <select name="role" id="role">
-          <option value="student">Student</option>
-          <option value="intern">Intern</option>
-          <option value="professional">
-              Professional
-          </option>
-          <option value="other">Other</option>
-      </select>
-  </div>
+    </select>
+</div>
+<div class="form-control">
+  <label> Whats the most important quality to have in your food
+      <small>(Check all that apply)</small>
+  </label>
+  <!-- Input Type Checkbox -->
+  <label for="inp-1">
+      <input type="checkbox"
+             name="food" value ="Spicy">Spicy</input></label>
+  <label for="inp-2">
+      <input type="checkbox"
+             name="food" value ="Meat">Meat</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="food" value ="Vegetable">Vegetable</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="food" value ="Sweet">Sweet</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="food" value ="Out of this world">Out of this world</input></label>
+</div>
+
 
   <div class="form-control" id  ="choice-1">
-      <label>
-          Some random question
-      </label>
+    <label>
+        Whats your trip budget?
+    </label>
 
-      <!-- Input Type Radio Button -->
-      <label for="recommed-1">
-          <input type="radio"
-                 id="recommed-1"
-                 name="recommed"
-                 value="Yes">Yes</input>
-      </label>
-      <label for="recommed-2">
-          <input type="radio"
-                 id="recommed-2"
-                 name="recommed"
-                 value="No">No</input>
-      </label>
-      <label for="recommed-3">
-          <input type="radio"
-                 id="recommed-3"
-                 name="recommed"
-                 value="Maybe">Maybe</input>
-      </label>
-  </div>
+    <!-- Input Type Radio Button -->
+    <label for="recommed-1">
+        <input type="radio"
+               id="recommed-1"
+               name="budget"
+               value="$$$$">$$$$</input>
+    </label>
+    <label for="recommed-2">
+        <input type="radio"
+               id="recommed-2"
+               name="budget"
+               value="$$$">$$$</input>
+    </label>
+    <label for="recommed-3">
+        <input type="radio"
+               id="recommed-3"
+               name="budget"
+               value="$$">$$</input>
+    </label>
+    <label for="recommed-3">
+        <input type="radio"
+               id="recommed-3"
+               name="budget"
+               value="$">$</input>
+    </label>
+</div>
+<div class="form-control">
+  <label> What does adventure look like too you?
+      <small>(Check all that apply)</small>
+  </label>
+  <!-- Input Type Checkbox -->
+  <label for="inp-1">
+      <input type="checkbox"
+             name="adventure" value ="Exploring">Exploring Nature beauty and dangers</input></label>
+  <label for="inp-2">
+      <input type="checkbox"
+             name="adventure" value ="Wondering">Wondering the hidden allies of a city</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="adventure" value ="Pondering">Pondering the meaning of a meaningless painting at a world renown museum</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="adventure" value ="Living">Living a night you won't remember the next morning</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="adventure" value ="basic"> Im not cool, give me something basic</input></label>
+</div>
 
-  <div class="form-control">
-      <label>Languages and Frameworks known
-          <small>(Check all that apply)</small>
-      </label>
-      <!-- Input Type Checkbox -->
-      <label for="inp-1">
-          <input type="checkbox"
-                 name="inp">C</input></label>
-      <label for="inp-2">
-          <input type="checkbox"
-                 name="inp">C++</input></label>
-      <label for="inp-3">
-          <input type="checkbox"
-                 name="inp">C#</input></label>
-      <label for="inp-4">
-          <input type="checkbox"
-                 name="inp">Java</input></label>
-      <label for="inp-5">
-          <input type="checkbox"
-                 name="inp">Python</input></label>
-      <label for="inp-6">
-          <input type="checkbox"
-                 name="inp">JavaScript</input></label>
-      <label for="inp-7">
-          <input type="checkbox"
-                 name="inp">React</input></label>
-      <label for="inp-7">
-          <input type="checkbox"
-                 name="inp">Angular</input></label>
-      <label for="inp-7">
-          <input type="checkbox"
-                 name="inp">Django</input></label>
-      <label for="inp-7">
-          <input type="checkbox"
-                 name="inp">Spring</input></label>
-  </div>
+<div class="form-control" id  ="choice-1">
+  <label>
+      Are you looking to spend the night?
+  </label>
 
-  <div class="form-control">
-      <label for="comment">
-          Any comments or suggestions
-      </label>
+  <!-- Input Type Radio Button -->
+  <label for="recommed-1">
+      <input type="radio"
+             id="recommed-1"
+             name="SpendtheNight"
+             value="Yes">Yes</input>
+  </label>
+  <label for="recommed-2">
+      <input type="radio"
+             id="recommed-2"
+             name="SpendtheNight"
+             value="No">No</input>
+  </label>
+</div>
 
-      <!-- multi-line text input control -->
-      <textarea name="comment" id="comment"
-          placeholder="Enter your comment here">
-      </textarea>
-  </div>
+<div class="form-control">
+  <label for="age" id="label-NumbOfNights">
+      If so, how many nights</label> <small>(Put 0 for a day trip)</small>
+
+  <!-- Input Type Text -->
+  <input type="text"
+         id="NumOfNights"
+         placeholder="How many night are you going to stay" />
+</div>
+
+<div class="form-control">
+  <label>Do you prefer a way to get around town?
+      <small>(some ways might be harder than others, but we will let you know!)</small>
+  </label>
+  <!-- Input Type Checkbox -->
+  <label for="inp-1">
+      <input type="checkbox"
+             name="transport"
+             value ="car">Rent a car</input></label>
+  <label for="inp-2">
+      <input type="checkbox"
+             name="transport"
+             value ="public">Public Transportation</input></label>
+  <label for="inp-3">
+      <input type="checkbox"
+             name="transport"
+             value= "rideshare">Ride Sharing </input></label>
+  <label for="inp-4">
+      <input type="checkbox"
+             name="transport"
+             value ="walk">Walking</input></label>
+  <label for="inp-5">
+      <input type="checkbox"
+             name="transport"
+             value ="bike">Biking</input></label>
+
+</div>
+
+<div class="form-control">
+  <label for="comment">
+      Anything else you want to let us know?
+  </label>
+
+  <!-- multi-line text input control -->
+  <textarea name="comment" id="comment"
+            placeholder="Enter your comment here">
+</textarea>
+</div>
 
   <!-- Multi-line Text Input Control -->
   <!-- <a href="index.html"> -->
-  <button type="submit" value="submit" id = "submit">
+  <button type="button" value="submit" id = "submit">
       Submit
   </button>
-  <!-- <script>
-    var submit = document.getElementById("submit");
-    document.getElementById("submit").onclick = function () {
-        window.location.href = "index.html";
-        console.log("pressed");
-    };
-  </script> -->
 </form>
 <script type="module" src ="form.js" ></script>
 <script>
