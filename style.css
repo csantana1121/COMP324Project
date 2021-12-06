@@ -113,6 +113,11 @@ html {
   margin: 8px;
 }
 
+img {
+  height: 462px;
+  object-fit: cover;
+}
+
 .about-section {
   text-align: center;
   color: white;
