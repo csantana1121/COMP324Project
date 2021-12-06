@@ -12,6 +12,7 @@ function Append(){
         console.log('error returned - ', e);
         });
     }
+
 function GeoCode(location,store)  {   
     const data = null;
     const key = "AIzaSyBn3PMPpjblLpWGNw4GCq-cZoqb2SeYWc8";
@@ -32,10 +33,42 @@ function GeoCode(location,store)  {
     xhr.open("GET", url);
     xhr.send(data);
   };
+
+  function ReverseGeoCode(lat,lng)  {   
+    const data = null;
+    const key = "AIzaSyBn3PMPpjblLpWGNw4GCq-cZoqb2SeYWc8";
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        var json = JSON.parse(this.responseText);
+        console.log(json["results"][0]["formatted_address"]);
+        var address = json["results"][0]["formatted_address"];
+        const db = firebase.database();
+        db.ref('results/q9').set(address).then(() => {
+            // log data set success to console
+            console.log('data set...');
+            // window.open( "results.html");
+            })
+            .catch((e) => {
+            // catcg error from Firebase - error logged to console
+            console.log('error returned', e);
+            });
+        // console.log(this.responseText);
+        // return this.responseText;
+        
+      }
+    });
+    url ="https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat +","+lng+"&key=" + key;
+    xhr.open("GET", url);
+    xhr.send(data);
+  };
+  
 function store(list){
     var x = list["lat"]
     var y = list["lng"]
     console.log(x + " " + y);
+    hotels(x,y);
     restaurants(x,y);
     attractions(x,y);
 }
@@ -67,7 +100,7 @@ function restaurants(lat , lng){
         rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
         rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
-        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
+        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
@@ -80,7 +113,7 @@ function restaurants(lat , lng){
     }
   });
   const db = firebase.database();
-      db.ref('results/q1').once('value')
+      db.ref('results/q3').once('value')
         .then((snapshot) => {
         // snapshot of the data - request the return value for the data at the time of query...
         const data = snapshot.val();
@@ -126,7 +159,7 @@ function attractions(lat , lng){
         rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
         rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
-        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
+        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
@@ -147,6 +180,81 @@ function attractions(lat , lng){
     xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
 
     xhr.send(data);
+    })
+    .catch((e) => {
+    console.log('error returned - ', e);
+    });
+}
+function hotels(lat,lng){
+    const data = null;
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = false;
+
+    xhr.addEventListener("readystatechange", function () {
+    if (this.readyState === this.DONE) {
+      console.log(this.responseText);
+      var json = JSON.parse(this.response)
+      console.log(json['data'][0]['name']);
+      console.log(json['data'][0]['business_listings']['mobile_contacts'][0]['value'])
+      var output = document.getElementById("output");
+      var count = 0;
+      var i = 0;
+      var titleoutput = document.getElementById("output");
+      var title = "<div class='row'><h2 style='text-align:center'>Hotels</h2>";
+      const parser = new DOMParser();
+      titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
+      while(count<3){
+        var url = json['data'][i]['photo'];
+        var web = json['data'][i]['business_listings']['mobile_contacts'][0]
+        if(typeof url != 'undefined' && typeof web != 'undefined'){ 
+        var output = document.getElementById("output");
+        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
+        rest += "<img src='";
+        rest += json['data'][i]['photo']['images']['large']['url'];
+        rest += "'style='width:100%'>"
+        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        rest += "<a href='" + json['data'][i]['business_listings']['mobile_contacts'][0]['value'] + "'><button class='button'>Website</button></a>"
+        rest += "<a href='mailto: " + json['data'][i]['email']+ "'><button class='button'>Contact</button><div><div>"
+    //   output.append(parser.parseFromString(query, 'text/html').firstChild);
+        output.append(parser.parseFromString(rest, 'text/html').firstChild)
+        count++;
+        } 
+        i++;
+    }
+    }
+  });
+
+    const db = firebase.database();
+    db.ref('results/q5').once('value')
+    .then((snapshot) => {
+    // snapshot of the data - request the return value for the data at the time of query...
+    const data = snapshot.val();
+    console.log('single data = ', data);
+    if(data == 'Yes'){
+    db.ref('results/q6').once('value')
+    .then((snapshot) => {
+    // snapshot of the data - request the return value for the data at the time of query...
+    const dat = snapshot.val();
+    console.log('single data = ', dat);
+    xhr.open("GET", "https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=" + lat + "&longitude=" + lng + "&lang=en_US&hotel_class=3&limit=30&adults=1&rooms=1&currency=USD&nights=" + dat);
+    xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+    xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+
+    xhr.send(data);
+    })
+    .catch((e) => {
+    console.log('error returned - ', e);
+    });
+    } else{
+        xhr.open("GET", "https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=" + lat + "&longitude=" + lng + "&lang=en_US&hotel_class=1,2,3&limit=30&adults=1&rooms=1&currency=USD");
+        xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+        xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+    
+        xhr.send(data);    
+    }
     })
     .catch((e) => {
     console.log('error returned - ', e);
