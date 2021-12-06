@@ -51,7 +51,7 @@ function restaurants(lat , lng){
       var count = 0;
       var i = 0;
       var titleoutput = document.getElementById("output");
-      var title = "<h2 style='text-align:center'>Restaurants</h2><div class='row'>";
+      var title = "<div class='row'><h2 style='text-align:center'>Restaurants</h2>";
       const parser = new DOMParser();
       titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
       while(count<3){
@@ -62,7 +62,7 @@ function restaurants(lat , lng){
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
-        rest += "<p>" +json['data'][i]['rating'] +"/5.0</p>"
+        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
         rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
         rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
         rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
@@ -106,22 +106,49 @@ function attractions(lat , lng){
       var json = JSON.parse(this.response)
       console.log(json['data'][0]['name']);
       var output = document.getElementById("output");
-    //   var query = "<img src='";
-    //   query += json['data'][0]['photo']['images']['large']['url'];
-    //   query += "'>"
-      var rest = "<div><p>" + json['data'][0]['name'] + "</p>"
-      rest += "<img src='";
-        rest += json['data'][0]['photo']['images']['large']['url'];
-        rest += "'></div>"
+      var count = 0;
+      var i = 0;
+      var titleoutput = document.getElementById("output");
+      var title = "<div class='row'><h2 style='text-align:center'>Attractions</h2>";
       const parser = new DOMParser();
+      titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
+      while(count<3){
+        var url = json['data'][i]['photo'];
+        var web = json['data'][i]['website']
+        if(typeof url != 'undefined' && typeof web != 'undefined'){ 
+        var output = document.getElementById("output");
+        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
+        rest += "<img src='";
+        rest += json['data'][i]['photo']['images']['large']['url'];
+        rest += "'style='width:100%'>"
+        rest += "<p>Rating: " +json['data'][i]['rating'] +"/5.0</p>"
+        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
+        rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
+        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
-      output.append(parser.parseFromString(rest, 'text/html').firstChild)
+        output.append(parser.parseFromString(rest, 'text/html').firstChild)
+        count++;
+        } 
+        i++;
+    }
     }
   });
 
-  xhr.open("GET", "https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng?longitude=" + lng + "&latitude=" + lat +"&lunit=km&currency=USD&lang=en_US");
-  xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-  xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+  const db = firebase.database();
+  db.ref('results/q1').once('value')
+    .then((snapshot) => {
+    // snapshot of the data - request the return value for the data at the time of query...
+    const data = snapshot.val();
+    console.log('single data = ', data);
+    xhr.open("GET", "https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng?longitude=" + lng + "&latitude=" + lat +"&lunit=km&currency=USD&lang=en_US");
+    xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
+    xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
 
-  xhr.send(data);
+    xhr.send(data);
+    })
+    .catch((e) => {
+    console.log('error returned - ', e);
+    });
 }
