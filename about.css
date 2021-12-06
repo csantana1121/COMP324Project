@@ -20,7 +20,7 @@ html {
 
 .column {
   float: left;
-  width: 33.3%;
+  width: 25%;
   margin-bottom: 16px;
   max-height: 860px;
   padding: 0 8px;
