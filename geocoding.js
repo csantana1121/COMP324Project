@@ -136,7 +136,7 @@ function restaurants(lat , lng){
         console.log('single data = ', data);
         xhr.open("GET", "https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=" + lat + "&longitude=" + lng +"&limit=30&currency=USD&prices_restaurants=" + data +"&distance=2&open_now=false&lunit=km&lang=en_US");
         xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-        xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+        xhr.setRequestHeader("x-rapidapi-key", "b02794cbb5mshf78817f1118c6eap1bece0jsnfef52dd73e23");
 
         xhr.send(data);
         })
@@ -209,7 +209,7 @@ function attractions(lat , lng){
     console.log('single data = ', data);
     xhr.open("GET", "https://travel-advisor.p.rapidapi.com/attractions/list-by-latlng?longitude=" + lng + "&latitude=" + lat +"&lunit=km&currency=USD&lang=en_US");
     xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-    xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+    xhr.setRequestHeader("x-rapidapi-key", "b02794cbb5mshf78817f1118c6eap1bece0jsnfef52dd73e23");
 
     xhr.send(data);
     })
@@ -227,7 +227,6 @@ function hotels(lat,lng){
       console.log(this.responseText);
       var json = JSON.parse(this.response)
       console.log(json['data'][0]['name']);
-      console.log(json['data'][0]['business_listings']['mobile_contacts'][0]['value'])
       var output = document.getElementById("output");
       var count = 0;
       var i = 0;
@@ -237,7 +236,7 @@ function hotels(lat,lng){
       titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
       while(count<3){
         var url = json['data'][i]['photo'];
-        var web = json['data'][i]['business_listings']['mobile_contacts'][0]
+        var web = json['data'][i]['business_listings']['mobile_contacts']
         if(typeof url != 'undefined' && typeof web != 'undefined'){
         // ReverseGeoCode(json['data'][i]['latitude'],json['data'][i]['longitude'])
         var output = document.getElementById("output");
@@ -265,7 +264,11 @@ function hotels(lat,lng){
         } else{
             rest += "<p><br></p>"
         }
-        rest += "<a href='" + json['data'][i]['business_listings']['mobile_contacts'][0]['value'] + "'><button class='button'>Website</button></a>"
+        if(typeof json['data'][i]['business_listings']['mobile_contacts'][0] != 'undefined'){
+            rest += "<a href='" + json['data'][i]['business_listings']['mobile_contacts'][0]['value'] + "'><button class='button'>Website</button></a>"
+        }else{
+            rest += "<button class='button'>Website</button>"
+        }
         rest += "<a href='mailto: " + json['data'][i]['email']+ "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
@@ -290,7 +293,7 @@ function hotels(lat,lng){
     console.log('single data = ', dat);
     xhr.open("GET", "https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=" + lat + "&longitude=" + lng + "&lang=en_US&hotel_class=3&limit=30&adults=1&rooms=1&currency=USD&nights=" + dat);
     xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-    xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+    xhr.setRequestHeader("x-rapidapi-key", "b02794cbb5mshf78817f1118c6eap1bece0jsnfef52dd73e23");
 
     xhr.send(data);
     })
@@ -300,7 +303,7 @@ function hotels(lat,lng){
     } else{
         xhr.open("GET", "https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng?latitude=" + lat + "&longitude=" + lng + "&lang=en_US&hotel_class=1,2,3&limit=30&adults=1&rooms=1&currency=USD");
         xhr.setRequestHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com");
-        xhr.setRequestHeader("x-rapidapi-key", "3b2fd2f1dbmsh5e3cd57f3775ac7p1cada7jsn3b71280bf6c5");
+        xhr.setRequestHeader("x-rapidapi-key", "b02794cbb5mshf78817f1118c6eap1bece0jsnfef52dd73e23");
     
         xhr.send(data);    
     }
