@@ -114,7 +114,8 @@ html {
 }
 
 img {
-  height: 462px;
+  height: 200px;
+  width: 400;
   object-fit: cover;
 }
 
