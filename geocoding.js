@@ -51,28 +51,31 @@ function restaurants(lat , lng){
       var count = 0;
       var i = 0;
       var titleoutput = document.getElementById("output");
-      var title = "<h2 style='text-align:center'>Restaurants</h2>";
+      var title = "<h2 style='text-align:center'>Restaurants</h2><div class='row'>";
       const parser = new DOMParser();
       titleoutput.append(parser.parseFromString(title, 'text/html').firstChild)
       while(count<3){
         var url = json['data'][i]['photo'];
         if(typeof url != 'undefined'){ 
         var output = document.getElementById("output");
-        var rest = "<div> <p>" + json['data'][i]['name'] + "</p>"
+        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
-        rest += "'>"
-        rest += "<p>" +json['data'][i]['rating'] +"</p>"
-        rest += "<p>" + json['data'][i]['ranking'] + "</p>"
-        rest += "<p>" + json['data'][i]['phone'] + "</p>"
+        rest += "'style='width:100%'>"
+        rest += "<p>" +json['data'][i]['rating'] +"/5.0</p>"
+        rest += "<p>Ranking: " + json['data'][i]['ranking'] + "</p>"
+        rest += "<p>Phone #" + json['data'][i]['phone'] + "</p>"
+        rest += "<p>Address: " + json['data'][i]['address'] + "</p>"
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
-        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div>"
+        rest += "<a href='" + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
         } 
         i++;
       }
+      var end = "<div>"
+      titleoutput.append(parser.parseFromString(end, 'text/html').firstChild)
       console.log(json['data'][0]['name']);
     }
   });
