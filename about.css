@@ -37,6 +37,11 @@ html {
     
 }
 
+img {  
+  max-width: 100%;  
+  height: auto;  
+  }  
+
 .container {
   padding: 0 16px;
 }
