@@ -116,7 +116,7 @@ function restaurants(lat , lng){
             rest += "<p> <br> </p>"
         }
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
-        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
+        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div><br>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
@@ -191,7 +191,7 @@ function attractions(lat , lng){
             rest += "<p> <br> </p>"
         }
         rest += "<a href='" + json['data'][i]['website']+ "'><button class='button'>Website</button></a>"
-        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div>"
+        rest += "<a href='mailto: " + json['data'][i]['email'] + "'><button class='button'>Contact</button><div><div><br>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
@@ -269,7 +269,7 @@ function hotels(lat,lng){
         }else{
             rest += "<button class='button'>Website</button>"
         }
-        rest += "<a href='mailto: " + json['data'][i]['email']+ "'><button class='button'>Contact</button><div><div>"
+        rest += "<a href='mailto: " + json['data'][i]['email']+ "'><button class='button'>Contact</button><div><div><br>"
     //   output.append(parser.parseFromString(query, 'text/html').firstChild);
         output.append(parser.parseFromString(rest, 'text/html').firstChild)
         count++;
