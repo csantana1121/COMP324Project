@@ -91,7 +91,7 @@ function restaurants(lat , lng){
         var url = json['data'][i]['photo'];
         if(typeof url != 'undefined'){ 
         var output = document.getElementById("output");
-        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
+        var rest = "<div class='column-3' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
@@ -166,7 +166,7 @@ function attractions(lat , lng){
         var web = json['data'][i]['website']
         if(typeof url != 'undefined' && typeof web != 'undefined'){ 
         var output = document.getElementById("output");
-        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
+        var rest = "<div class='column-3' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"
@@ -240,7 +240,7 @@ function hotels(lat,lng){
         if(typeof url != 'undefined' && typeof web != 'undefined'){
         // ReverseGeoCode(json['data'][i]['latitude'],json['data'][i]['longitude'])
         var output = document.getElementById("output");
-        var rest = "<div class='column' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
+        var rest = "<div class='column-3' style='padding-bottom:100px'><div class='card'> <p>" + json['data'][i]['name'] + "</p>"
         rest += "<img src='";
         rest += json['data'][i]['photo']['images']['large']['url'];
         rest += "'style='width:100%'>"

@@ -25,6 +25,13 @@ html {
   max-height: 860px;
   padding: 0 8px;
 }
+.column-3 {
+  float: left;
+  width: 33%;
+  margin-bottom: 16px;
+  max-height: 860px;
+  padding: 0 8px;
+}
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
